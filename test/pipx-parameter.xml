@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<t:suite xmlns:p="http://www.w3.org/ns/xproc"
+         xmlns:c="http://www.w3.org/ns/xproc-step"
+         xmlns:pipx="http://pipx.org/ns/pipx"
+         xmlns:t="http://pipx.org/ns/test">
+
+   <t:import href="../src/pipx.xpl"/>
+
+   <t:title>The step "pipx:parameter"</t:title>
+
+   <t:test code="param-001" step="pipx:parameter">
+      <t:title>Optional parameter, provided through p:with-param.</t:title>
+      <t:documentation xmlns="http://www.w3.org/1999/xhtml">
+         <p>Provides a parameter <code>foo</code> using <code>p:with-param</code>, and asks for its
+            value. The result must include this parameter, with the correct value.</p>
+      </t:documentation>
+      <pipx:parameter param-name="foo">
+         <p:with-param name="foo" select="'bar'"/>
+      </pipx:parameter>
+      <t:deep-equal>
+         <param name="foo">bar</param>
+      </t:deep-equal>
+   </t:test>
+
+   <t:test code="param-002" step="pipx:parameter">
+      <t:title>Required parameter, provided through p:with-param.</t:title>
+      <t:documentation xmlns="http://www.w3.org/1999/xhtml">
+         <p>Provides a parameter <code>foo</code> using <code>p:with-param</code>, and asks for its
+            value. The result must include this parameter, with the correct value.</p>
+      </t:documentation>
+      <pipx:parameter param-name="foo" required="true">
+         <p:with-param name="foo" select="'bar'"/>
+      </pipx:parameter>
+      <t:deep-equal>
+         <param name="foo">bar</param>
+      </t:deep-equal>
+   </t:test>
+
+   <t:test code="param-003" step="pipx:parameter">
+      <t:title>Required parameter, none provided.</t:title>
+      <t:documentation xmlns="http://www.w3.org/1999/xhtml">
+         <p>Requires a parameter <code>foo</code> but does not provide any parameter. The error
+               <code>pipx:no-parameter</code> must be thrown.</p>
+      </t:documentation>
+      <pipx:parameter param-name="foo" required="true">
+         <p:input port="parameters">
+            <p:empty/>
+         </p:input>
+      </pipx:parameter>
+      <t:error code="pipx:no-parameter"/>
+   </t:test>
+
+</t:suite>
