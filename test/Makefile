@@ -6,3 +6,10 @@ pipx-parameter-report.xml: pipx-parameter.xproc
 
 pipx-parameter.xproc: pipx-parameter.xml
 	saxon -s:$< -xsl:compile-suite.xsl > $@
+
+clean:
+	rm pipx-parameter-report.html
+	rm pipx-parameter-report.xml
+	rm pipx-parameter.xproc
+
+.PHONY: clean
