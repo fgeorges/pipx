@@ -23,7 +23,7 @@
             <title>
                <xsl:value-of select="t:title"/>
             </title>
-            <link rel="stylesheet" type="text/css" href="../website/css/bootstrap.css" />
+            <link rel="stylesheet" type="text/css" href="bootstrap.css" />
          </head>
          <body>
             <div class="container">
@@ -38,7 +38,7 @@
                <p>Click on the test code to expand (or collapse) its description.</p>
                <xsl:apply-templates select="t:test-result"/>
             </div>
-            <script src="../../../web/jquery/jquery-2.1.0.js" />
+            <script src="jquery-2.1.0.js" />
             <script>
               $('button').click(function () {
                 var btn = $(this);
