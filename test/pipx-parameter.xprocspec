@@ -56,7 +56,7 @@
          <x:context label="the error document">
             <x:document type="errors"/>
          </x:context>
-         <x:expect label="should contain a param document describing the foo attribute" type="xpath" test="count(/c:errors/c:error[@code='pipx:no-parameter']) &gt; 0"/>
+         <x:expect label="should contain the error 'pipx:no-parameter'" type="xpath" test="count(/c:errors/c:error[@code='pipx:no-parameter']) &gt; 0"/>
       </x:scenario>
 
    </x:scenario>
