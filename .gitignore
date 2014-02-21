@@ -1,1 +1,6 @@
 website/api/*
+test/pipx-parameter.xproc
+test/pipx-parameter.html
+test/pipx-parameter-report.xml
+test/pipx-parameter-report.html
+test/pipx-parameter-junit.xml
