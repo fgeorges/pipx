@@ -26,7 +26,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                       <li><a href="starting.html">Getting started</a></li>
-                      <li><a href="steps.html">Steps</a></li>
+                      <li><a href="api/">Steps</a></li>
                       <li class="active"><a href="progress.html">Getting involved</a></li>
                       <!--li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -55,22 +55,43 @@
         </div>
         <div class="container">
             <h1>Getting involved</h1>
-            <p>PipX is developed on <a href="https://github.com/fgeorges/pipx"
-                    >GitHub</a>. Feel free to clone the repository and submit pull requests.</p>
             <p>If you want either getting help, or providing feedback, or
                 suggesting new steps, or improving the website, in one word, if you want to
                 communicate, you can use the <a
                     href="http://lists.w3.org/Archives/Public/xproc-dev/">XProc Dev</a> list at
                 W3C (the mailing list page contains a link to register).</p>
             <p>Any help is welcome!</p>
+            <p>PipX is developed on <a href="https://github.com/fgeorges/pipx"
+                    >GitHub</a>. Feel free to clone the repository and submit pull requests.</p>
+            <h2>Documentation</h2>
+            <p>The API documentation is generated using <a
+                    href="https://github.com/vojtechtoman/xprocdoc/">XProcDoc</a>. Each step, each
+                port, each option, and each parameter must be properly documented, using HTML
+                elements in the appropriate <code>p:documentation</code>. Always use an HTML
+                element, by default a <code>p</code>, even if you need only one sentence. Bind the
+                default namespace to the HTML namespace, and declare it only on the
+                    <code>p:documentation</code> element, in order to avoid any side-effect with the
+                default namespace.</p>
+            <h2>Issue tracking</h2>
+            <p>Use the issue tracking system on the <a
+                    href="https://github.com/fgeorges/pipx">GitHub project</a>.</p>
+            <h2>Tests</h2>
+            <p>We are still deciding whether to use <a
+                    href="https://github.com/daisy-consortium/xprocspec">XProcSpec</a>, or something
+                in-house (started in the <code>test/</code> sub-directory. For now, we are allowing
+                both, so feel free to use any of those. We will decide soon which one to keep, after
+                people had a chance to evaluate both.</p>
+            <p>Since XProcSpec already exists, it would be great to be able to
+                use it. Whilst writing tests, make sure you report any problem you find, or possible
+                enhancements you think about, to Jostein. The XProc Dev mailing list is probably the
+                best option to reach him.</p>
             <h2>Open questions</h2>
             <p>The following is a random list of open questions. Those are open
                 points we still would like to answer, any feedback or idea welcome.</p>
             <ul>
                 <li>Split the library into several modules? (XProc libraries tend to grow very rapidly)</li>
-                <li>What unit test system to use?</li>
-                <li>What documentation system to use? (for documenting the API)</li>
                 <li>Any specific release process?  Versioning, or other details?</li>
+                <li>Use XProcSpec or something else?</li>
                 <li>And more...</li>
             </ul>
         </div>
