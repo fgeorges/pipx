@@ -4,7 +4,7 @@
          xmlns:pipx="http://pipx.org/ns/pipx"
          xmlns:t="http://pipx.org/ns/test">
 
-   <t:import href="../src/pipx.xpl"/>
+   <t:import href="../pipx/src/pipx.xpl"/>
 
    <t:title>The step "pipx:parameter"</t:title>
 
@@ -48,6 +48,98 @@
          </p:input>
       </pipx:parameter>
       <t:error code="pipx:no-parameter"/>
+   </t:test>
+
+   <t:test code="param-004" step="pipx:parameter">
+      <t:title>Required parameter, another one provided</t:title>
+      <t:documentation xmlns="http://www.w3.org/1999/xhtml">
+         <p>Requires a parameter <code>foo</code> but does only provide the parameter
+               <code>ufo</code>. The error <code>pipx:no-parameter</code> must be thrown.</p>
+      </t:documentation>
+      <pipx:parameter param-name="foo" required="true">
+         <p:with-param name="ufo" select="'some value'"/>
+      </pipx:parameter>
+      <t:error code="pipx:no-parameter"/>
+   </t:test>
+
+   <t:test code="param-005" step="pipx:parameter">
+      <t:title>Optional parameter, none provided</t:title>
+      <t:documentation xmlns="http://www.w3.org/1999/xhtml">
+         <p>Provides no parameter, and asks for the parameter <code>foo</code>. The result must be
+            empty.</p>
+      </t:documentation>
+      <pipx:parameter param-name="foo">
+         <p:input port="parameters">
+            <p:empty/>
+         </p:input>
+      </pipx:parameter>
+      <t:deep-equal>
+         <param name="foo"/>
+      </t:deep-equal>
+   </t:test>
+
+   <t:test code="param-006" step="pipx:parameter">
+      <t:title>Multiple parameters provided.</t:title>
+      <t:documentation xmlns="http://www.w3.org/1999/xhtml">
+         <p>Provides 5 different parameters using <code>p:with-param</code>, and asks for the value
+            of one of them. The result must include this parameter, with the correct value.</p>
+      </t:documentation>
+      <pipx:parameter param-name="four">
+         <p:with-param name="one"   select="'un'"/>
+         <p:with-param name="two"   select="'deux'"/>
+         <p:with-param name="three" select="'trois'"/>
+         <p:with-param name="four"  select="'quatre'"/>
+         <p:with-param name="five"  select="'cinq'"/>
+      </pipx:parameter>
+      <t:deep-equal>
+         <param name="four">quatre</param>
+      </t:deep-equal>
+   </t:test>
+
+   <t:test code="param-007" step="pipx:parameter">
+      <t:title>Parameters provided through one inline parameter document.</t:title>
+      <t:documentation xmlns="http://www.w3.org/1999/xhtml">
+         <p>Provides the parameters through an inline document.</p>
+      </t:documentation>
+      <pipx:parameter param-name="foo">
+         <p:input port="parameters">
+            <p:inline>
+               <c:param-set>
+                  <c:param name="foo" value="bar"/>
+               </c:param-set>
+            </p:inline>
+         </p:input>
+      </pipx:parameter>
+      <t:deep-equal>
+         <param name="foo">bar</param>
+      </t:deep-equal>
+   </t:test>
+
+   <t:test code="param-008" step="pipx:parameter">
+      <t:title>Parameters provided through multiple inline parameter documents.</t:title>
+      <t:documentation xmlns="http://www.w3.org/1999/xhtml">
+         <p>Provides the parameters through several inline documents.</p>
+      </t:documentation>
+      <pipx:parameter param-name="four">
+         <p:input port="parameters">
+            <p:inline>
+               <c:param-set>
+                  <c:param name="one" value="un"/>
+                  <c:param name="two" value="deux"/>
+               </c:param-set>
+            </p:inline>
+            <p:inline>
+               <c:param-set>
+                  <c:param name="three" value="trois"/>
+                  <c:param name="four"  value="quatre"/>
+                  <c:param name="five"  value="cinq"/>
+               </c:param-set>
+            </p:inline>
+         </p:input>
+      </pipx:parameter>
+      <t:deep-equal>
+         <param name="four">quatre</param>
+      </t:deep-equal>
    </t:test>
 
 </t:suite>
