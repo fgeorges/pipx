@@ -37,8 +37,10 @@
             <p:input  port="actual" primary="true"/>
             <p:input  port="expected"/>
             <p:output port="result" primary="true"/>
-            <p:option name="comments"/>
-            <p:option name="whitespaces"/>
+            <!-- TODO: Validate the value of $comments and $whitespaces (either
+                 'ignore' or 'compare'). -->
+            <p:option name="comments"    select="'compare'"/>
+            <p:option name="whitespaces" select="'compare'"/>
             <p:xslt>
                <p:with-param name="comments"    select="$comments"/>
                <p:with-param name="whitespaces" select="$whitespaces"/>

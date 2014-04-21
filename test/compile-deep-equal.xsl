@@ -148,8 +148,9 @@
    <xsl:function name="t:sort-attrs" as="attribute()*">
       <xsl:param name="attrs" as="attribute()*"/>
       <xsl:for-each select="$attrs">
-         <!-- TODO: QNames are comparable, but not ordered, so need to use a 2 keys
-              approach (first key is the namespace, second is the local name). -->
+         <!-- QNames are comparable, but not ordered, so need to use a 2 keys
+              approach (first key is the namespace, second is the local name).
+              The important point is to be stable. -->
          <xsl:sort select="namespace-uri(.)"/>
          <xsl:sort select="local-name(.)"/>
          <xsl:sequence select="."/>

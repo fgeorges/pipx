@@ -74,11 +74,42 @@
       </p>
       <div class="pipx-id-{ @code }">
          <xsl:copy-of select="t:documentation/node()"/>
-         <xsl:apply-templates select="t:error"/>
+         <xsl:apply-templates select="t:success|t:error"/>
       </div>
    </xsl:template>
 
-   <xsl:template match="t:error">
+   <!--
+      For both successful and erroneous tests, serialize both atual and expected
+      result, if present.
+      
+      TODO: Display also any caught and/or expected error (with code, and maybe
+      message and user info as well), if any.
+   -->
+   <xsl:template match="t:success|t:error">
+      <xsl:if test="exists(t:actual)">
+         <p>
+            <b>Actual result</b>
+            <xsl:text>:</xsl:text>
+         </p>
+         <pre>
+            <xsl:apply-templates select="t:actual/node()" mode="serialize"/>
+         </pre>
+      </xsl:if>
+      <xsl:if test="exists(t:expected)">
+         <p>
+            <b>Expected result</b>
+            <xsl:text>:</xsl:text>
+         </p>
+         <pre>
+            <!-- TODO: Serialize properly the content... (with syntax highlithing,
+                 as well as diffs with a red background in case of any diff between
+                 actual and expected output) -->
+            <xsl:apply-templates select="t:expected/node()" mode="serialize"/>
+         </pre>
+      </xsl:if>
+   </xsl:template>
+
+   <xsl:template match="t:error" priority="10">
       <p>
          <b>Error</b>
          <xsl:text>: </xsl:text>
@@ -102,25 +133,7 @@
             </xsl:for-each>
          </ul>
       </xsl:if>
-      <xsl:if test="exists(t:actual)">
-         <p>
-            <b>Actual result</b>
-            <xsl:text>:</xsl:text>
-         </p>
-         <pre>
-            <xsl:apply-templates select="t:actual/node()" mode="serialize"/>
-         </pre>
-      </xsl:if>
-      <xsl:if test="exists(t:expected)">
-         <p>
-            <b>Expected result</b>
-            <xsl:text>:</xsl:text>
-         </p>
-         <pre>
-            <!-- TODO: Serialize properly the content... -->
-            <xsl:apply-templates select="t:expected/node()" mode="serialize"/>
-         </pre>
-      </xsl:if>
+      <xsl:next-match/>
    </xsl:template>
 
    <!-- TODO: Use the lib "serial" to serialize properly the content... -->
