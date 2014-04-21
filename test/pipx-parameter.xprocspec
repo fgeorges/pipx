@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://www.daisy.org/ns/xprocspec/xprocspec.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<x:description xmlns:x="http://www.daisy.org/ns/xprocspec" script="../src/pipx.xpl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:p="http://www.w3.org/ns/xproc"
+<x:description xmlns:x="http://www.daisy.org/ns/xprocspec" script="../pipx/src/pipx.xpl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:p="http://www.w3.org/ns/xproc"
    xmlns:c="http://www.w3.org/ns/xproc-step" xmlns:pipx="http://pipx.org/ns/pipx" xmlns:t="http://pipx.org/ns/test">
 
    <x:scenario label="Calling the step 'pipx:parameter'">
