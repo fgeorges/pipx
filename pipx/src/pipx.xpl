@@ -188,12 +188,14 @@
       <p:output port="result"     primary="true"/>
       <p:option name="param-name" required="true"/>
       <p:option name="required"   required="false" select="'0'"/>
-      <p:template name="title-tpl">
+      <p:wrap-sequence wrapper="c:parameters">
          <p:input port="source">
             <p:pipe step="this" port="parameters"/>
          </p:input>
+      </p:wrap-sequence>
+      <p:template name="title-tpl">
          <p:input port="template">
-            <p:inline><param xmlns="">{ string((/c:param|/c:param-set/c:param)[@name eq $name]/@value) }</param></p:inline>
+            <p:inline><param xmlns="">{ string(/c:parameters/(c:param|c:param-set/c:param)[@name eq $name]/@value) }</param></p:inline>
          </p:input>
          <p:with-param name="name" select="$param-name"/>
       </p:template>

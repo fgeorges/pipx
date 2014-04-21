@@ -1,0 +1,10 @@
+<project xmlns="http://expath.org/ns/project"
+         name="http://pipx.org/"
+         abbrev="pipx"
+         version="0.1.0-dev">
+
+   <title>PipX</title>
+
+   <home>http://pipx.org/</home>
+
+</project>
